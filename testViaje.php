@@ -2,7 +2,6 @@
 
 // Ledesma, Facundo Nehuen
 // FAI-4238
-// https://github.com/FacuLedesmaBertalot/trabajoPracticoEntregable.git
 
 include_once 'viaje.php';
 include_once 'pasajero.php';
