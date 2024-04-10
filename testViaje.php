@@ -11,9 +11,8 @@ include_once 'responsableV.php';
 
 $pasajero1 = new Pasajero("Juliana", "Alaz", 41524735, 2994785479);
 $pasajero2 = new Pasajero("Lucas", "Avellana", 34154789, 2995478215);
-$pasajero3 = new Pasajero("Lucas", "Avellana", 34154789, 2995478215);
-$pasajero4 = new Pasajero("Juan", "Pérez", 12345678, 1234567890);
-$pasajeros = [$pasajero1, $pasajero2, $pasajero3, $pasajero4];
+$pasajero3 = new Pasajero("Juan", "Pérez", 12345678, 1234567890);
+$pasajeros = [$pasajero1, $pasajero2, $pasajero3];
 
 $empleado = new ResponsableV(1754, 20147852, "Claudio", "Garbanzo");
 $empleados = [$empleado];
@@ -38,7 +37,7 @@ do {
             $nuevoDNI = trim(fgets(STDIN));
             $analisisDNI = $viaje->agregarPasajero($nuevoDNI);
             
-            if ($analisisDNI != true) {
+            if ($analisisDNI != true) { // Agregar tope maximo  && $viaje->getCantidadMaxima >= $pasajeros
                 // Agregar pasajero al viaje si existe
                 echo "Nombre: \n";
                 $nombre = trim(fgets(STDIN));
@@ -63,21 +62,21 @@ do {
             echo "¿Qué desea modificar? \nD) Destino:\nC) Cantidad Máxima de Pasajeros:\nE) Empleado: \n";
             $modificar = trim(fgets(STDIN));
 
-            if ($modificar == "D") {
+            if ($modificar == "D") { // Agregar Destino Actual : echo $viaje ->getDestino();
                 echo "Nuevo Destino: ";
                 $nuevoDestino = trim(fgets(STDIN));
                 $viaje->setDestino($nuevoDestino);
                 echo "Destino modificado correctamente.\n";
                 echo "------------------------------------------------------\n";
 
-            } elseif($modificar == "C") {
+            } elseif($modificar == "C") { // Agregar Maximo de pasajeros actual: echo $viaje->getCantidadMaxima;
                 echo "Nueva Cantidad Máxima de Pasajeros: ";
                 $nuevoMaximo = trim(fgets(STDIN));
                 $viaje->setCantidadMaxima($nuevoMaximo);
                 echo "Máximo modificado correctamente.\n";
                 echo "------------------------------------------------------\n";
 
-            } elseif ($modificar == "E") {
+            } elseif ($modificar == "E") { // Agregar Empleado Actual: echo $viaje->getNombreEmpleado y getApellidoEmpleado;
                 echo "Ingresar Número de Empleado: ";
                 $nuevoIDEmpleado = trim(fgets(STDIN));
                 $analisisEmpleado = $viaje->agregarEmpleado($nuevoIDEmpleado);
@@ -121,7 +120,6 @@ do {
             $viaje = new Viaje($destino, $cantidadMaxima, $pasajeros, $empleados);
             echo "Información del viaje cargada correctamente.\n";
             echo "------------------------------------------------------\n";
-
 
             break;
 

@@ -3,16 +3,17 @@
 class Viaje{
     
     // Atributos
+    //  AGREGAR $codigoViaje;
     private $destino;
     private $cantidadMaxima;
-    private $objPasajeros;
-    private $responsable;
+    private $objPasajeros; // $arrayPasajeros
+    private $responsable; // cambiar a $objResponsable
 
     public function __construct($destino, $cantidadMaxima, $objPasajeros, $responsable)
     {
         $this->destino = $destino;
         $this->cantidadMaxima = $cantidadMaxima;
-        $this->objPasajeros = $objPasajeros;
+        $this->objPasajeros = $objPasajeros; // Debe ser array [] $arrayPasajeros = [];
         $this->responsable = $responsable;
     }
 
@@ -51,11 +52,11 @@ class Viaje{
 
     // Método para agregar pasajero
     public function agregarPasajero($nuevoPasajero) {
-        $existe = false;
-        foreach ($this->getObjPasajeros() as $pasajeroExistente) {
+        $existe = false; 
+        foreach ($this->getObjPasajeros() as $pasajeroExistente) { // Se tiene que hacer con un while y una bandera $existe
             if ($pasajeroExistente->getDNI() == $nuevoPasajero) {
                 $existe = true;
-                break;
+                break; // eliminar break
             } 
         }
         
@@ -70,7 +71,7 @@ class Viaje{
         foreach ($this->getResponsable() as $empleadoExistente) {
             if ($empleadoExistente->getNumEmpleado() == $nuevoEmpleado) {
                 $existeNum = true;
-                break;
+                break; // eliminar break
             } 
         }
 
