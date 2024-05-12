@@ -37,6 +37,32 @@ class PasajeroNE extends Pasajero{
         $this->comidaEspecial = $comidaEspecial;
     }
 
+    // MÉTODOS
+
+    // Método para dar porcentaje incremento en Pasajeros con Necesidades Especiales
+    public function darPorcentajeIncremento()
+    {
+        $incremento = 0;
+        $incremento += parent:: darPorcentajeIncremento();
+
+        if ($this->getSillaDeRuedas() == true && $this->getAsistencia() == true && $this->getComidaEspecial() == true) {
+            $incremento = 30;
+        } elseif ($this->getSillaDeRuedas() == true || $this->getAsistencia() == true || $this->getComidaEspecial() == true) {
+            $incremento = 15;
+        }
+        
+        return $incremento;
+    }
+
+
+
+
+
+
+
+
+
+
 
     // __toString
     public function __toString()

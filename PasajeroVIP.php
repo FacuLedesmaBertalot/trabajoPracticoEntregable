@@ -29,6 +29,28 @@ class PasajeroVIP extends Pasajero {
         $this->cantMillas = $cantMillas;
     }
 
+    // MÉTODOS
+
+    // Método para dar el porcentaje de incremento de un Pasajero VIP
+    public function darPorcentajeIncremento()
+    {
+            $incremento = 35;
+            $incremento += parent::darPorcentajeIncremento();
+    
+            if ($this->getCantMillas() > 300) {
+                $incremento += 30;
+            }
+    
+            return $incremento;
+        }
+
+
+
+
+
+
+
+
     // __toString
     public function __toString()
     {
