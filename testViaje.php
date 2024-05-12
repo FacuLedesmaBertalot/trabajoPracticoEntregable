@@ -103,7 +103,7 @@ do {
 
         case 3:
             echo $viaje. "\n";
-
+            
             break;
 
         case 4:
