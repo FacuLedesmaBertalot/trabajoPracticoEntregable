@@ -3,9 +3,9 @@
 // Ledesma, Facundo Nehuen
 // FAI-4238
 
-include_once 'viaje.php';
-include_once 'pasajero.php';
-include_once 'responsableV.php';
+include_once 'Viaje.php';
+include_once 'Pasajero.php';
+include_once 'ResponsableV.php';
 
 
 
@@ -37,8 +37,7 @@ do {
             $nuevoDNI = trim(fgets(STDIN));
             $analisisDNI = $viaje->agregarPasajero($nuevoDNI);
             
-            if ($analisisDNI != true) { // Agregar tope maximo  && $viaje->getCantidadMaxima >= $pasajeros
-                // Agregar pasajero al viaje si existe
+            if ($analisisDNI != true && $viaje->getCantidadMaxima() >= $pasajeros ) {
                 echo "Nombre: \n";
                 $nombre = trim(fgets(STDIN));
                 echo "Apellido: \n";
@@ -62,21 +61,21 @@ do {
             echo "¿Qué desea modificar? \nD) Destino:\nC) Cantidad Máxima de Pasajeros:\nE) Empleado: \n";
             $modificar = trim(fgets(STDIN));
 
-            if ($modificar == "D") { // Agregar Destino Actual : echo $viaje ->getDestino();
+            if ($modificar == "D") {
                 echo "Nuevo Destino: ";
                 $nuevoDestino = trim(fgets(STDIN));
                 $viaje->setDestino($nuevoDestino);
                 echo "Destino modificado correctamente.\n";
                 echo "------------------------------------------------------\n";
 
-            } elseif($modificar == "C") { // Agregar Maximo de pasajeros actual: echo $viaje->getCantidadMaxima;
+            } elseif($modificar == "C") { 
                 echo "Nueva Cantidad Máxima de Pasajeros: ";
                 $nuevoMaximo = trim(fgets(STDIN));
                 $viaje->setCantidadMaxima($nuevoMaximo);
                 echo "Máximo modificado correctamente.\n";
                 echo "------------------------------------------------------\n";
 
-            } elseif ($modificar == "E") { // Agregar Empleado Actual: echo $viaje->getNombreEmpleado y getApellidoEmpleado;
+            } elseif ($modificar == "E") {
                 echo "Ingresar Número de Empleado: ";
                 $nuevoIDEmpleado = trim(fgets(STDIN));
                 $analisisEmpleado = $viaje->agregarEmpleado($nuevoIDEmpleado);

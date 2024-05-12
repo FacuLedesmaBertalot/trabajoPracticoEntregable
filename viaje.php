@@ -13,7 +13,7 @@ class Viaje{
     {
         $this->destino = $destino;
         $this->cantidadMaxima = $cantidadMaxima;
-        $this->objPasajeros = $objPasajeros; // Debe ser array [] $arrayPasajeros = [];
+        $this->objPasajeros = $objPasajeros;
         $this->responsable = $responsable;
     }
 
@@ -53,12 +53,16 @@ class Viaje{
     // Método para agregar pasajero
     public function agregarPasajero($nuevoPasajero) {
         $existe = false; 
-        foreach ($this->getObjPasajeros() as $pasajeroExistente) { // Se tiene que hacer con un while y una bandera $existe
+        $objPasajeros = $this->getObjPasajeros();
+        $i = 0;
+        
+         while ($i < count($objPasajeros) && !$existe) {
+            $pasajeroExistente = $objPasajeros[$i];
+
             if ($pasajeroExistente->getDNI() == $nuevoPasajero) {
                 $existe = true;
-                break; // eliminar break
-            } 
-        }
+            }
+         }
         
         return $existe;
     }
