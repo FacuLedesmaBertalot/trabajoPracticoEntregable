@@ -5,6 +5,8 @@
 
 include_once 'Viaje.php';
 include_once 'Pasajero.php';
+include_once 'PasajeroVIP.php';
+include_once 'PasajeroNE.php';
 include_once 'ResponsableV.php';
 
 
@@ -103,7 +105,7 @@ do {
 
         case 3:
             echo $viaje. "\n";
-            
+
             break;
 
         case 4:
