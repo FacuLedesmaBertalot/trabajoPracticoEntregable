@@ -3,7 +3,7 @@
 // Ledesma, Facundo Nehuen
 // FAI-4238
 
-include_once 'viaje.php';
+include_once 'Viaje.php';
 include_once 'Pasajero.php';
 include_once 'PasajeroVIP.php';
 include_once 'PasajeroNE.php';
