@@ -4,45 +4,44 @@ class Pasajero{
 
     // Atributos
     private $nombre;
-    private $apellido;
-    private $DNI;
-    private $telefono;
+    private $numAsiento;
+    private $numTicket;
 
-    public function __construct($nombre, $apellido, $DNI, $telefono)
+    public function __construct($nombre, $numAsiento, $numTicket)
     {
         $this->nombre = $nombre;
-        $this->apellido = $apellido;
-        $this->DNI = $DNI;
-        $this->telefono = $telefono;
+        $this->numAsiento = $numAsiento;
+        $this->numTicket = $numTicket;
     }
 
     // Getters
     public function getNombre() {
         return $this->nombre;
     }
-    public function getApellido() {
-        return $this->apellido;
+    public function getNumAsiento() {
+        return $this->numAsiento;
     }
-    public function getDNI() {
-        return $this->DNI;
+    public function getNumTicket() {
+        return $this->numTicket;
     }
-    public function getTelefono() {
-        return $this->telefono;
-    }
+
 
     // Setters
     public function setNombre($nombre) {
         $this->nombre = $nombre;
     }
-    public function setApellido($apellido) {
-        $this->apellido = $apellido;
+    public function setNumAsiento($numAsiento) {
+        $this->numAsiento = $numAsiento;
     }
-    public function setDNI($DNI) {
-        $this->DNI = $DNI;
+    public function setNumTicket($numTicket) {
+        $this->numTicket = $numTicket;
     }
-    public function setTelefono($telefono) {
-        $this->telefono = $telefono;
+
+    // Método para dar el porcentaje de Incremento de un pasajero estándar
+    public function darPorcentajeIncremento() {
+        return 10;
     }
+
 
 
 
@@ -50,7 +49,9 @@ class Pasajero{
     // __toString
     public function __toString()
     {
-        return "Nombre: " .$this->getNombre(). ".\nApellido: " .$this->getApellido(). ".\nDNI: " .$this->getDNI().".\nTeléfono: " .$this->getTelefono(). ".\n";
+        return "Nombre: " .$this->getNombre(). 
+        ".\nNúmero de Asiento: " .$this->getNumAsiento(). 
+        ".\nNúmero de Ticket: " .$this->getnumTicket().".\n";
     }
 
 }

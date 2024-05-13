@@ -1,105 +1,114 @@
 <?php
 
-class Viaje{
-    
-    // Atributos
-    //  AGREGAR $codigoViaje;
-    private $destino;
-    private $cantidadMaxima;
-    private $objPasajeros; // $arrayPasajeros
-    private $responsable; // cambiar a $objResponsable
+class Viaje
+{
 
-    public function __construct($destino, $cantidadMaxima, $objPasajeros, $responsable)
+    // Atributos
+    private $costoViaje;
+    private $costoAbonado;
+    private $maxPasajeros;
+    private $colPasajeros;
+
+    public function __construct($costoViaje, $costoAbonado, $maxPasajeros, $colPasajeros)
     {
-        $this->destino = $destino;
-        $this->cantidadMaxima = $cantidadMaxima;
-        $this->objPasajeros = $objPasajeros;
-        $this->responsable = $responsable;
+        $this->costoViaje = $costoViaje;
+        $this->costoAbonado = $costoAbonado;
+        $this->maxPasajeros = $maxPasajeros;
+        $this->colPasajeros = $colPasajeros;
     }
 
     // Getters
-    public function getDestino() {
-        return $this->destino;
+    public function getCostoViaje()
+    {
+        return $this->costoViaje;
     }
-    public function getCantidadMaxima() {
-        return $this->cantidadMaxima;
+    public function getCostoAbonado()
+    {
+        return $this->costoAbonado;
     }
-    public function getObjPasajeros() {
-        return $this->objPasajeros;
+    public function getMaxPasajeros()
+    {
+        return $this->maxPasajeros;
     }
-    public function getResponsable() {
-        return $this->responsable;
+    public function getColPasajeros()
+    {
+        return $this->colPasajeros;
     }
+
 
 
     // Setters
-    public function setDestino($destino) {
-        $this->destino = $destino;
+    public function setCostoViaje($costoViaje)
+    {
+        $this->costoViaje = $costoViaje;
     }
-    public function setCantidadMaxima($cantidadMaxima) {
-        $this->cantidadMaxima = $cantidadMaxima;
+    public function setCostoAbonado($costoAbonado)
+    {
+        $this->costoAbonado = $costoAbonado;
     }
-    public function setObjPasajeros($objPasajeros) {
-        $this->objPasajeros = $objPasajeros;
+    public function setMaxPasajeros($maxPasajeros)
+    {
+        $this->maxPasajeros = $maxPasajeros;
     }
-    public function setResponsable($responsable) {
-        $this->responsable = $responsable;
+    public function setColPasajeros($colPasajeros)
+    {
+        $this->colPasajeros = $colPasajeros;
     }
 
 
 
     // Métodos
 
-    // Método para agregar pasajero
-    public function agregarPasajero($nuevoPasajero) {
-        $existe = false; 
-        $objPasajeros = $this->getObjPasajeros();
-        $i = 0;
-        
-         while ($i < count($objPasajeros) && !$existe) {
-            $pasajeroExistente = $objPasajeros[$i];
+    // Método que debe incorporar el pasajero a la colección de pasajeros (solo si hay espacio disponible), actualizar los costos abonados y retornar el costo final que deberá ser abonado por el pasajero.
+    public function venderPasaje($objPasajero)
+    {
 
-            if ($pasajeroExistente->getDNI() == $nuevoPasajero) {
-                $existe = true;
-            }
-         }
-        
-        return $existe;
-    }
+        $colPasajeros = $this->getColPasajeros();
+        $costoAbonado = $this->getCostoAbonado();
+        $costoViaje = $this->getCostoViaje();
 
+        if ($this->hayPasajesDisponibles() == true) {
 
-    // Método para agregar un empleado, y si el empleado ya existe pedirlo nuevamente
-    public function agregarEmpleado($nuevoEmpleado) {
+            array_push($colPasajeros, $objPasajero);
+            $this->setColPasajeros($colPasajeros);
 
-        $existeNum = false;
-        foreach ($this->getResponsable() as $empleadoExistente) {
-            if ($empleadoExistente->getNumEmpleado() == $nuevoEmpleado) {
-                $existeNum = true;
-                break; // eliminar break
-            } 
+            $incremento = $objPasajero->darPorcentajeIncremento() / 100;
+            $costoAbonado = $this->getCostoAbonado() + $incremento;
+            $this->setCostoAbonado($costoAbonado);
+            $costoFinal = $costoViaje + ($costoViaje * $incremento);
+
+            return $costoFinal;
         }
-
-        return $existeNum;
     }
+
+
+    // Método que retorna booleano si la cantidad de pasajeros disponibles es posible
+    public function hayPasajesDisponibles()
+    {
+
+        $colPasajeros = $this->getColPasajeros();
+        $maxPasajeros = $this->getMaxPasajeros();
+        $esPosible = false;
+
+        if (count($colPasajeros) < $maxPasajeros) {
+            $esPosible = true;
+        }
+        return $esPosible;
+    }
+
 
 
 
     // __toString
-    public function __toString() {
+    public function __toString()
+    {
         $pasajerosString = "";
-        $responsableString = "";
-        foreach ($this->getObjPasajeros() as $pasajero) {
+        foreach ($this->getColPasajeros() as $pasajero) {
             $pasajerosString .= $pasajero . "";
         }
-        foreach ($this->getResponsable() as $responsable) {
-            $responsableString .= $responsable ."";
-        }
 
-        return "\nDestino: " . $this->getDestino() . ".\nCantidad Máxima de Pasajeros: " . $this->getCantidadMaxima() . ".\nPasajeros: \n" . $pasajerosString . ".\nResponsable del Viaje: " .$responsableString. ".\n";
+        return "\nCosto del Viaje: " . $this->getCostoViaje() .
+            ".\nCosto Abonado: " . $this->getCostoAbonado() .
+            ".\nPasajeros: \n" . $pasajerosString . ".\n";
     }
-
-
 }
-
-
-?>
