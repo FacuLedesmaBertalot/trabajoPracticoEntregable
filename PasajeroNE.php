@@ -56,14 +56,6 @@ class PasajeroNE extends Pasajero{
 
 
 
-
-
-
-
-
-
-
-
     // __toString
     public function __toString()
     {
@@ -73,9 +65,6 @@ class PasajeroNE extends Pasajero{
         $cadena .= "\nComida Especial: " .$this->getComidaEspecial(). ".\n";
         return $cadena;        
     }
-
-
-
 
 
 

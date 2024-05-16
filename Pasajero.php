@@ -45,7 +45,6 @@ class Pasajero{
 
 
 
-
     // __toString
     public function __toString()
     {
