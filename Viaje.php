@@ -107,8 +107,7 @@ class Viaje
             $pasajerosString .= $pasajero . "";
         }
 
-        return "\nCosto del Viaje: " . $this->getCostoViaje() .
-            ".\nCosto Abonado: " . $this->getCostoAbonado() .
-            ".\nPasajeros: \n" . $pasajerosString . ".\n";
+        return "\nCosto del Viaje: " .$this->getCostoViaje().
+            ".\nPasajeros: \n" .$pasajerosString. ".\n";
     }
 }
