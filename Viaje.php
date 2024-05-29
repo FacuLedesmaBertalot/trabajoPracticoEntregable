@@ -81,7 +81,6 @@ class Viaje
         foreach ($this->getObjPasajeros() as $pasajeroExistente) {
             if ($pasajeroExistente->getDNI() == $nuevoPasajero) {
                 $existe = true;
-                break;
             } 
         }
         
@@ -96,7 +95,6 @@ class Viaje
         foreach ($this->getObjResponsable() as $empleadoExistente) {
             if ($empleadoExistente->getNumEmpleado() == $nuevoEmpleado) {
                 $existeNum = true;
-                break;
             } 
         }
 
