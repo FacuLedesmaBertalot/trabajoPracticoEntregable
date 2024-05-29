@@ -4,20 +4,27 @@ class Viaje
 {
 
     // Atributos
+    private $destino;
     private $costoViaje;
     private $costoAbonado;
-    private $maxPasajeros;
-    private $colPasajeros;
+    private $cantidadMaxima;
+    private $objPasajeros;
+    private $objResponsable;
 
-    public function __construct($costoViaje, $costoAbonado, $maxPasajeros, $colPasajeros)
+    public function __construct($destino, $costoViaje, $costoAbonado, $cantidadMaxima, $objPasajeros, $objResponsable)
     {
+        $this->destino = $destino;
         $this->costoViaje = $costoViaje;
         $this->costoAbonado = $costoAbonado;
-        $this->maxPasajeros = $maxPasajeros;
-        $this->colPasajeros = $colPasajeros;
+        $this->cantidadMaxima = $cantidadMaxima;
+        $this->objPasajeros = $objPasajeros;
+        $this->objResponsable = $objResponsable;
     }
 
     // Getters
+    public function getDestino() {
+        return $this->destino;
+    }
     public function getCostoViaje()
     {
         return $this->costoViaje;
@@ -26,18 +33,24 @@ class Viaje
     {
         return $this->costoAbonado;
     }
-    public function getMaxPasajeros()
+    public function getCantidadMaxima()
     {
-        return $this->maxPasajeros;
+        return $this->cantidadMaxima;
     }
-    public function getColPasajeros()
+    public function getObjPasajeros()
     {
-        return $this->colPasajeros;
+        return $this->objPasajeros;
+    }
+    public function getObjResponsable() {
+        return $this->objResponsable;
     }
 
 
 
     // Setters
+    public function setDestino($destino) {
+        $this->destino = $destino;
+    }
     public function setCostoViaje($costoViaje)
     {
         $this->costoViaje = $costoViaje;
@@ -46,31 +59,62 @@ class Viaje
     {
         $this->costoAbonado = $costoAbonado;
     }
-    public function setMaxPasajeros($maxPasajeros)
+    public function setCantidadMaxima($cantidadMaxima)
     {
-        $this->maxPasajeros = $maxPasajeros;
+        $this->cantidadMaxima = $cantidadMaxima;
     }
-    public function setColPasajeros($colPasajeros)
+    public function setObjPasajeros($objPasajeros)
     {
-        $this->colPasajeros = $colPasajeros;
+        $this->objPasajeros = $objPasajeros;
+    }
+    public function setObjResponsable($objResponsable) {
+        $this->objResponsable = $objResponsable;
     }
 
 
 
     // Métodos
 
+    // Método para agregar pasajero
+    public function agregarPasajero($nuevoPasajero) {
+        $existe = false;
+        foreach ($this->getObjPasajeros() as $pasajeroExistente) {
+            if ($pasajeroExistente->getDNI() == $nuevoPasajero) {
+                $existe = true;
+                break;
+            } 
+        }
+        
+        return $existe;
+    }
+
+
+    // Método para agregar un empleado, y si el empleado ya existe pedirlo nuevamente
+    public function agregarEmpleado($nuevoEmpleado) {
+
+        $existeNum = false;
+        foreach ($this->getObjResponsable() as $empleadoExistente) {
+            if ($empleadoExistente->getNumEmpleado() == $nuevoEmpleado) {
+                $existeNum = true;
+                break;
+            } 
+        }
+
+        return $existeNum;
+    }
+
     // Método que debe incorporar el pasajero a la colección de pasajeros (solo si hay espacio disponible), actualizar los costos abonados y retornar el costo final que deberá ser abonado por el pasajero.
     public function venderPasaje($objPasajero)
     {
 
-        $colPasajeros = $this->getColPasajeros();
+        $colPasajeros = $this->getObjPasajeros();
         $costoAbonado = $this->getCostoAbonado();
         $costoViaje = $this->getCostoViaje();
 
         if ($this->hayPasajesDisponibles() == true) {
 
             array_push($colPasajeros, $objPasajero);
-            $this->setColPasajeros($colPasajeros);
+            $this->getObjPasajeros($colPasajeros);
 
             $incremento = $objPasajero->darPorcentajeIncremento() / 100;
             $costoAbonado = $this->getCostoAbonado() + $incremento;
@@ -86,8 +130,8 @@ class Viaje
     public function hayPasajesDisponibles()
     {
 
-        $colPasajeros = $this->getColPasajeros();
-        $maxPasajeros = $this->getMaxPasajeros();
+        $colPasajeros = $this->getObjPasajeros();
+        $maxPasajeros = $this->getCantidadMaxima();
         $esPosible = false;
 
         if (count($colPasajeros) < $maxPasajeros) {
@@ -103,7 +147,7 @@ class Viaje
     public function __toString()
     {
         $pasajerosString = "";
-        foreach ($this->getColPasajeros() as $pasajero) {
+        foreach ($this->getObjPasajeros() as $pasajero) {
             $pasajerosString .= $pasajero . "";
         }
 

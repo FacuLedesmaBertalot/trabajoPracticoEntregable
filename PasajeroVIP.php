@@ -6,9 +6,9 @@ class PasajeroVIP extends Pasajero
     private $numViajeroFrecuente;
     private $cantMillas;
 
-    public function __construct($nombre, $numAsiento, $numTicket, $numViajeroFrecuente, $cantMillas)
+    public function __construct($nombre, $apellido, $DNI, $telefono, $numAsiento, $numTicket, $numViajeroFrecuente, $cantMillas)
     {
-        parent::__construct($nombre, $numAsiento, $numTicket);
+        parent::__construct($nombre, $apellido, $DNI, $telefono, $numAsiento, $numTicket);
 
         $this->numViajeroFrecuente = $numViajeroFrecuente;
         $this->cantMillas = $cantMillas;
@@ -39,11 +39,11 @@ class PasajeroVIP extends Pasajero
     // Método para dar el porcentaje de incremento de un Pasajero VIP
     public function darPorcentajeIncremento()
     {
+        $incremento = parent::darPorcentajeIncremento();
         $incremento = 35;
-        $incremento += parent::darPorcentajeIncremento();
 
         if ($this->getCantMillas() > 300) {
-            $incremento += 30;
+            $incremento = 30;
         }
 
         return $incremento;

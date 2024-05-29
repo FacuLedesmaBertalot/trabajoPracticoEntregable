@@ -6,9 +6,9 @@ class PasajeroNE extends Pasajero{
     private $asistencia;
     private $comidaEspecial;
 
-    public function __construct($nombre, $numAsiento, $numTicket, $sillaDeRuedas, $asistencia, $comidaEspecial)
+    public function __construct($nombre, $apellido, $DNI, $telefono, $numAsiento, $numTicket, $sillaDeRuedas, $asistencia, $comidaEspecial)
     {
-        parent:: __construct($nombre, $numAsiento, $numTicket);
+        parent:: __construct($nombre, $apellido, $DNI, $telefono, $numAsiento, $numTicket);
         
         $this->sillaDeRuedas = $sillaDeRuedas;
         $this->asistencia = $asistencia;
@@ -42,8 +42,7 @@ class PasajeroNE extends Pasajero{
     // Método para dar porcentaje incremento en Pasajeros con Necesidades Especiales
     public function darPorcentajeIncremento()
     {
-        $incremento = 0;
-        $incremento += parent:: darPorcentajeIncremento();
+        $incremento = parent::darPorcentajeIncremento();
 
         if ($this->getSillaDeRuedas() == true && $this->getAsistencia() == true && $this->getComidaEspecial() == true) {
             $incremento = 30;
@@ -65,7 +64,5 @@ class PasajeroNE extends Pasajero{
         $cadena .= "\nComida Especial: " .$this->getComidaEspecial(). ".\n";
         return $cadena;        
     }
-
-
 
 }

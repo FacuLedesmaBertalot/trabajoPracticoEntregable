@@ -4,12 +4,18 @@ class Pasajero{
 
     // Atributos
     private $nombre;
+    private $apellido;
+    private $DNI;
+    private $telefono;
     private $numAsiento;
     private $numTicket;
 
-    public function __construct($nombre, $numAsiento, $numTicket)
+    public function __construct($nombre, $apellido, $DNI, $telefono, $numAsiento, $numTicket)
     {
         $this->nombre = $nombre;
+        $this->apellido = $apellido;
+        $this->DNI = $DNI;
+        $this->telefono = $telefono;
         $this->numAsiento = $numAsiento;
         $this->numTicket = $numTicket;
     }
@@ -17,6 +23,15 @@ class Pasajero{
     // Getters
     public function getNombre() {
         return $this->nombre;
+    }
+    public function getApellido() {
+        return $this->apellido;
+    }
+    public function getDNI() {
+        return $this->DNI;
+    }
+    public function getTelefono() {
+        return $this->telefono;
     }
     public function getNumAsiento() {
         return $this->numAsiento;
@@ -29,6 +44,15 @@ class Pasajero{
     public function setNombre($nombre) {
         $this->nombre = $nombre;
     }
+    public function setApellido($apellido) {
+        $this->apellido = $apellido;
+    }
+    public function setDNI($DNI) {
+        $this->DNI = $DNI;
+    }
+    public function setTelefono($telefono) {
+        $this->telefono = $telefono;
+    }
     public function setNumAsiento($numAsiento) {
         $this->numAsiento = $numAsiento;
     }
@@ -40,7 +64,7 @@ class Pasajero{
 
     // Método darPorcentajeIncremento
     public function darPorcentajeIncremento() {
-        return 10;
+        return 0;
     }
 
 
@@ -48,7 +72,10 @@ class Pasajero{
     // __toString
     public function __toString()
     {
-        return "Nombre: " .$this->getNombre(). 
+        return "\nNombre: " .$this->getNombre(). 
+        ".\nApellido: " .$this->getApellido(). 
+        ".\nDNI: " .$this->getDNI() . 
+        ".\nTeléfono: " .$this->getTelefono(). ".\n"; 
         ".\nNúmero de Asiento: " .$this->getNumAsiento(). 
         ".\nNúmero de Ticket: " .$this->getNumTicket().".\n";
     }
